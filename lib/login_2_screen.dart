@@ -28,7 +28,7 @@ class _Login2ScreenState extends State<Login2Screen> {
             obscureText: passwordTampil,
             decoration: InputDecoration(
               labelText: "Password",
-              hintText: "Masukkan Password",
+              hintText: "Masukkan Password anda",
               prefixIcon: Icon(Icons.lock),
               suffixIcon: passwordTampil
                   ? Icon(Icons.visibility_off)
