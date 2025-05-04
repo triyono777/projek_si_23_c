@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:projek_si_23_c/profil_screen.dart';
+
+import 'home_screen.dart';
 
 class Login2Screen extends StatefulWidget {
   const Login2Screen({super.key});
@@ -11,6 +16,8 @@ class Login2Screen extends StatefulWidget {
 
 class _Login2ScreenState extends State<Login2Screen> {
   bool passwordTampil = true;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   menampilkanPassword() {
     setState(() {
@@ -22,9 +29,18 @@ class _Login2ScreenState extends State<Login2Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(),
           TextField(
+            controller: usernameController,
+            decoration: InputDecoration(
+              labelText: "Username",
+              hintText: "Masukkan Username anda",
+              prefixIcon: Icon(Icons.person),
+            ),
+          ),
+          TextField(
+            controller: passwordController,
             obscureText: passwordTampil,
             decoration: InputDecoration(
               labelText: "Password",
@@ -40,9 +56,11 @@ class _Login2ScreenState extends State<Login2Screen> {
 
           ElevatedButton(
               onPressed: () {
-                menampilkanPassword();
+                final box = GetStorage();
+                box.write('username', usernameController.text);
+                Get.to(() => ProfilScreen());
               },
-              child: Text("tampil password")),
+              child: Text("Login")),
         ],
       ),
     );
